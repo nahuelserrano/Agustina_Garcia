@@ -16,11 +16,9 @@ import {
   Info,
 } from 'lucide-react';
 import Gallery from '@/components/Gallery';
-import WhatsAppIcon from '@/components/WhatsAppIcon';
-import { PHONE_WA } from '@/components/Header';
+import ContactForm from '@/components/ContactForm';
 import { fetchProperty } from '@/lib/api/properties';
 import { formatPrice, operationLabel, isRent, formatDate, formatLocation } from '@/lib/format';
-import type { PropertyPrice, PropertyLocation } from '@/types/property';
 
 interface DetailProps {
   params: { id: string };
@@ -173,13 +171,9 @@ export default async function PropertyDetailPage({ params }: DetailProps) {
               )}
             </div>
 
-            <ContactCTA
-              title={property.title}
-              operation={property.operation}
-              price={property.price}
-              location={property.location}
-            />
-
+            <div className="rounded-2xl border border-arena bg-crema-50 p-5">
+              <ContactForm propertyId={property.id} listingTitle={property.title} />
+            </div>
           </aside>
         </div>
       </div>
@@ -203,58 +197,6 @@ function Row({
         {label}
       </dt>
       <dd className="text-right text-sm font-semibold capitalize text-noche">{value}</dd>
-    </div>
-  );
-}
-
-/* Botón único de consulta: abre WhatsApp con un mensaje pre-armado. */
-function ContactCTA({
-  title,
-  operation,
-  price,
-  location,
-}: {
-  title: string;
-  operation: string;
-  price: PropertyPrice;
-  location: PropertyLocation;
-}) {
-  const loc = formatLocation(location ?? { city: '' });
-  const place = [loc.primary, loc.secondary].filter(Boolean).join(', ');
-
-  const message =
-    `Hola Agustina, vi esta propiedad en tu página web: ${title} · ` +
-    `${operationLabel(operation)} · ${formatPrice(price)}` +
-    (place ? ` · ${place}` : '') +
-    '. ¿Podemos coordinar una visita?';
-
-  const href = `https://wa.me/${PHONE_WA}?text=${encodeURIComponent(message)}`;
-
-  return (
-    <div className="rounded-2xl border border-arena bg-crema-50 p-6">
-      <div className="flex items-center gap-3">
-        <span className="flex h-11 w-11 items-center justify-center rounded-xl bg-verde text-white">
-          <WhatsAppIcon size={21} />
-        </span>
-        <div>
-          <h3 className="font-display text-xl leading-none">Consultá por esta propiedad</h3>
-          <p className="mt-1 truncate text-xs text-noche/60">{title}</p>
-        </div>
-      </div>
-
-      <a
-        href={href}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="btn btn-primary mt-5 w-full gap-2 px-6 py-3"
-      >
-        <WhatsAppIcon size={18} />
-        Consultar por esta propiedad
-      </a>
-
-      <p className="mt-3 text-center text-xs text-noche/50">
-        Te respondemos a la brevedad. Sin compromiso.
-      </p>
     </div>
   );
 }

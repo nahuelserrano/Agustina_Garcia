@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --crema: #f4f0e7;
+  --verde: #37937e;
+  --noche: #222b3a;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--crema);
+  color: var(--noche);
+  font-family: var(--font-hanken), system-ui, sans-serif;
+}
+
+::selection {
+  background: var(--verde);
+  color: #fff;
+}
+
+@layer components {
+  .container-max {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  }
+
+  .eyebrow {
+    @apply font-sans text-[0.7rem] font-semibold uppercase tracking-widecaps text-verde;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full font-display text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-verde focus-visible:ring-offset-2 focus-visible:ring-offset-crema;
+  }
+
+  .btn-primary {
+    @apply bg-verde text-white hover:bg-verde-800 active:scale-[0.98];
+  }
+
+  .btn-outline {
+    @apply border border-noche/30 bg-transparent text-noche hover:border-verde hover:text-verde active:scale-[0.98];
+  }
+
+  .field {
+    @apply w-full rounded-lg border border-arena bg-white px-3.5 py-2.5 text-sm text-noche placeholder:text-noche/40 transition-colors focus:border-verde focus:outline-none focus:ring-2 focus:ring-verde/25;
+  }
+
+  .field-label {
+    @apply mb-1.5 block font-sans text-[0.8rem] font-medium text-noche/80;
+  }
+}

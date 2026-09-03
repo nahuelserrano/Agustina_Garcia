@@ -1,18 +1,12 @@
 import type { Metadata } from 'next';
-import { Jost, Hanken_Grotesk } from 'next/font/google';
+import { Inter } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
-const jost = Jost({
+const inter = Inter({
   subsets: ['latin'],
-  variable: '--font-jost',
-  display: 'swap',
-});
-
-const hanken = Hanken_Grotesk({
-  subsets: ['latin'],
-  variable: '--font-hanken',
+  variable: '--font-inter',
   display: 'swap',
 });
 
@@ -29,7 +23,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="es" className={`${jost.variable} ${hanken.variable}`}>
+    <html lang="es" className={inter.variable}>
       <body className="font-sans text-noche">
         <Header />
         <main>{children}</main>

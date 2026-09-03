@@ -34,8 +34,8 @@ const config: Config = {
         arena: '#E4DCC8',
       },
       fontFamily: {
-        display: ['var(--font-jost)', 'system-ui', 'sans-serif'],
-        sans: ['var(--font-hanken)', 'system-ui', 'sans-serif'],
+        display: ['var(--font-inter)', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
       },
       letterSpacing: {
         widecaps: '0.22em',

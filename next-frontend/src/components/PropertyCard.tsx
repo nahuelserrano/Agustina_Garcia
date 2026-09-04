@@ -20,9 +20,10 @@ export default function PropertyCard({ property }: { property: PublicPropertyDto
   const [index, setIndex] = useState(0);
   const cover = images[index];
   const location = formatLocation(property.location ?? { city: '' });
-  const hasGarage =
-    (property.features?.garage ?? 0) > 0 || property.features?.garage === 1;
-  const title = property.title.replace(`, ${property.location?.city}`, '');
+  const hasGarage = (property.features?.garage ?? 0) > 0;
+  const title = property.location?.city
+    ? property.title.replace(`, ${property.location.city}`, '')
+    : property.title;
 
   const prev = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -89,7 +90,7 @@ export default function PropertyCard({ property }: { property: PublicPropertyDto
             {operationLabel(property.operation)}
           </span>
           {property.propertyType && (
-            <span className="rounded-lg bg-[#d0b669] px-3 py-1.5 text-sm font-semibold uppercase tracking-widecaps text-white">
+            <span className="rounded-lg bg-dorado px-3 py-1.5 text-sm font-semibold uppercase tracking-widecaps text-white">
               {property.propertyType}
             </span>
           )}

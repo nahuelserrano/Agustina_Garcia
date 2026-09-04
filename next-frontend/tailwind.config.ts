@@ -35,6 +35,7 @@ const config: Config = {
         menta: '#C3E1D9',
         salvia: '#BAD6C2',
         arena: '#E4DCC8',
+        dorado: '#d0b669',
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],

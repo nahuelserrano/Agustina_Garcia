@@ -25,10 +25,10 @@ export default function Footer() {
         <div className="hidden gap-10 xl:grid xl:grid-cols-4">
           <div>
             <Link href="/" aria-label="Ir al inicio">
-              <BrandLogo />
+              <BrandLogo iconOnly />
             </Link>
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-noche/70">
-              Inmobiliaria en Tandil. Te ayudamos a comprar, vender o alquilar que
+              Inmobiliaria en Tandil. Te ayudamos a comprar, vender o alquilar con
               confianza y cercanía.
             </p>
           </div>
@@ -49,7 +49,7 @@ export default function Footer() {
         <div className="xl:hidden">
           <div className="border-b border-arena pb-6 text-center">
             <Link href="/" aria-label="Ir al inicio" className="inline-flex">
-              <BrandLogo />
+              <BrandLogo iconOnly />
             </Link>
             <p className="mx-auto mt-4 max-w-xs text-sm leading-relaxed text-noche/70">
               Inmobiliaria en Tandil. Te ayudamos a comprar, vender o alquilar que

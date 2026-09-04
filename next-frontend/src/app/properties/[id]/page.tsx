@@ -18,7 +18,7 @@ import {
 import Gallery from '@/components/Gallery';
 import ContactForm from '@/components/ContactForm';
 import { fetchProperty } from '@/lib/api/properties';
-import { formatPrice, operationLabel, isRent, formatDate, formatLocation, propertyTypeLabel } from '@/lib/format';
+import { formatPrice, operationLabel, isRent, formatLocation, propertyTypeLabel } from '@/lib/format';
 
 interface DetailProps {
   params: { id: string };
@@ -62,8 +62,7 @@ export default async function PropertyDetailPage({ params }: DetailProps) {
     },
     { label: 'Ambientes', value: property.features?.rooms, Icon: Home, suffix: '' },
   ].filter((f) => f.value !== undefined && f.value !== null && f.value > 0);
-
-  const extras = [
+  [
     property.condition && { label: 'Estado', value: property.condition, Icon: Info },
     property.antiquityYears !== undefined && {
       label: 'Antigüedad',
@@ -77,7 +76,6 @@ export default async function PropertyDetailPage({ params }: DetailProps) {
       Icon: Banknote,
     },
   ].filter(Boolean) as { label: string; value: string; Icon: typeof Info }[];
-
   return (
     <div className="px-5 pb-24 pt-12 sm:px-8">
       <div className="mx-auto max-w-7xl">
@@ -177,26 +175,6 @@ export default async function PropertyDetailPage({ params }: DetailProps) {
           </aside>
         </div>
       </div>
-    </div>
-  );
-}
-
-function Row({
-  label,
-  value,
-  Icon,
-}: {
-  label: string;
-  value: string;
-  Icon?: typeof Info;
-}) {
-  return (
-    <div className="flex items-start justify-between gap-4">
-      <dt className="flex items-center gap-2 text-sm text-noche/60">
-        {Icon && <Icon size={15} className="shrink-0 text-verde" aria-hidden />}
-        {label}
-      </dt>
-      <dd className="text-right text-sm font-semibold capitalize text-noche">{value}</dd>
     </div>
   );
 }

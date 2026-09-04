@@ -15,7 +15,7 @@ import { fetchProperties } from '@/lib/api/properties';
 import { PHONE_DISPLAY, CONTACT_EMAIL, waLink } from '@/constants/contact';
 
 export const metadata: Metadata = {
-  title: 'Encontrá tu lugar en Tandil',
+  title: 'Inmobiliaria Agustina García',
 };
 
 const STEPS = [
@@ -98,7 +98,7 @@ export default async function HomePage() {
         <div className="container">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <p className="eyebrow">Propiedades destacadas</p>
+              <p className="eyebrow">Últimos ingresos</p>
               <h2 className="mt-2 font-sans text-3xl font-semibold tracking-tight sm:text-4xl">
                 Encontrá tu próxima propiedad
               </h2>

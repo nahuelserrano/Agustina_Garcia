@@ -185,7 +185,7 @@ function FullForm() {
       className="rounded-2xl border border-arena bg-white p-5 shadow-card sm:p-6"
     >
       <div className="mb-4 flex items-center justify-between">
-        <h2 className="flex items-center gap-2 font-display text-sm font-semibold text-noche/80">
+        <h2 className="flex items-center gap-2 font-sans text-sm font-semibold text-noche/80">
           <SlidersHorizontal size={16} className="text-verde" />
           Filtrar resultados
         </h2>

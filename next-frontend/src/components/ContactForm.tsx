@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Send, Check, AlertCircle } from 'lucide-react';
+import { PHONE_DISPLAY, CONTACT_EMAIL } from '@/constants/contact';
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001';
 
@@ -59,7 +60,7 @@ export default function ContactForm({ propertyId, listingTitle }: {
         <span className="flex h-11 w-11 items-center justify-center rounded-full bg-verde text-white">
           <Check size={22} aria-hidden />
         </span>
-        <h3 className="font-display text-2xl leading-tight">Mensaje enviado</h3>
+        <h3 className="font-sans text-2xl leading-tight">Mensaje enviado</h3>
         <p className="text-sm text-noche/75">
           Recibimos tu consulta. Te respondemos dentro de las próximas 24 hs hábiles.
         </p>
@@ -81,7 +82,7 @@ export default function ContactForm({ propertyId, listingTitle }: {
           <Send size={19} aria-hidden />
         </span>
         <div>
-          <h3 className="font-display text-xl leading-none">Consultá por esta propiedad</h3>
+          <h3 className="font-sans text-xl leading-none">Consultá por esta propiedad</h3>
           {listingTitle && (
             <p className="mt-1 text-xs text-noche/60">{listingTitle}</p>
           )}
@@ -92,8 +93,8 @@ export default function ContactForm({ propertyId, listingTitle }: {
         <div className="flex items-start gap-2.5 rounded-lg border border-red-200 bg-red-50 p-3 text-sm text-red-700">
           <AlertCircle size={17} className="mt-0.5 shrink-0" aria-hidden />
           <span>
-            No pudimos enviar tu consulta. Escribime a agmartillera@gmail.com o
-            llamá al 2494 28-9902.
+            No pudimos enviar tu consulta. Escribime a {CONTACT_EMAIL} o
+            llamá al {PHONE_DISPLAY}.
           </span>
         </div>
       )}

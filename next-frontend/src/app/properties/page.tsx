@@ -25,7 +25,7 @@ export default async function PropertiesPage({
       <div className="mx-auto max-w-7xl">
         <header className="mb-8">
           <p className="eyebrow">Listado completo</p>
-          <h1 className="mt-3 font-display text-4xl leading-tight sm:text-5xl">
+          <h1 className="mt-3 font-sans text-4xl leading-tight sm:text-5xl">
             Propiedades en Tandil
           </h1>
           <p className="mt-3 max-w-xl text-sm leading-relaxed text-noche/70">

@@ -12,7 +12,7 @@ import FilterBar from '@/components/FilterBar';
 import PropertyGrid from '@/components/PropertyGrid';
 import WhatsAppIcon from '@/components/WhatsAppIcon';
 import { fetchProperties } from '@/lib/api/properties';
-import { PHONE_WA, PHONE_DISPLAY } from '@/components/Header';
+import { PHONE_DISPLAY, CONTACT_EMAIL, waLink } from '@/constants/contact';
 
 export const metadata: Metadata = {
   title: 'Encontrá tu lugar en Tandil',
@@ -56,7 +56,7 @@ export default async function HomePage() {
 
         <div className="container relative pb-40 pt-14 sm:pt-20">
           <div className="mx-auto max-w-3xl text-center sm:text-left">
-            <h1 className="font-display text-4xl font-semibold leading-[1.1] tracking-tight sm:text-5xl lg:text-[3.5rem]">
+            <h1 className="font-sans text-4xl font-semibold leading-[1.1] tracking-tight sm:text-5xl lg:text-[3.5rem]">
               Te ayudo a
               <br />
               <span className="text-verde">encontrar tu lugar</span>
@@ -70,7 +70,7 @@ export default async function HomePage() {
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:justify-start">
               <a
-                href={`https://wa.me/${PHONE_WA}`}
+                href={waLink()}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn btn-primary gap-2.5 px-6 py-3"
@@ -99,13 +99,13 @@ export default async function HomePage() {
           <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
               <p className="eyebrow">Propiedades destacadas</p>
-              <h2 className="mt-2 font-display text-3xl font-semibold tracking-tight sm:text-4xl">
+              <h2 className="mt-2 font-sans text-3xl font-semibold tracking-tight sm:text-4xl">
                 Encontrá tu próxima propiedad
               </h2>
             </div>
             <Link
               href="/properties"
-              className="group inline-flex items-center gap-2 font-display text-sm font-medium text-verde transition-colors hover:text-verde-800"
+              className="group inline-flex items-center gap-2 font-sans text-sm font-medium text-verde transition-colors hover:text-verde-800"
             >
               Ver todas las propiedades
               <ArrowRight size={16} className="transition-transform duration-200 group-hover:translate-x-1" />
@@ -123,7 +123,7 @@ export default async function HomePage() {
         <div className="container grid gap-8 lg:grid-cols-[1.6fr_1fr] lg:items-stretch">
           <div id="nosotros" className="rounded-3xl border border-arena bg-white p-8 sm:p-10">
             <p className="eyebrow">Cómo trabajamos?</p>
-            <h2 className="mt-2 max-w-md font-display text-3xl font-semibold tracking-tight">
+            <h2 className="mt-2 max-w-md font-sans text-3xl font-semibold tracking-tight">
               Un proceso claro y acompañado
             </h2>
 
@@ -136,7 +136,7 @@ export default async function HomePage() {
                   <p className="mt-4 font-sans text-sm font-medium leading-snug text-noche">
                     {step.title}
                   </p>
-                  <span className="mt-4 font-display text-3xl font-semibold text-noche/20">
+                  <span className="mt-4 font-sans text-3xl font-semibold text-noche/20">
                     {step.number}
                   </span>
                   {i < STEPS.length - 1 && (
@@ -150,7 +150,7 @@ export default async function HomePage() {
           {/* Contacto rápido */}
           <div className="flex flex-col justify-between rounded-3xl bg-noche p-8 text-white sm:p-10">
             <div>
-              <h2 className="font-display text-3xl font-semibold tracking-tight">
+              <h2 className="font-sans text-3xl font-semibold tracking-tight">
                 ¿Tenés dudas?
               </h2>
               <p className="mt-2 font-sans text-white/70">
@@ -160,20 +160,20 @@ export default async function HomePage() {
 
             <div className="mt-10 space-y-3">
               <a
-                href={`https://wa.me/${PHONE_WA}`}
+                href={waLink()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 rounded-full bg-verde px-5 py-3.5 font-display text-sm font-medium transition-colors hover:bg-verde-800"
+                className="flex items-center gap-3 rounded-full bg-verde px-5 py-3.5 font-sans text-sm font-medium transition-colors hover:bg-verde-800"
               >
                 <WhatsAppIcon size={19} />
                 {PHONE_DISPLAY}
               </a>
               <a
-                href="mailto:agmartillera@gmail.com"
+                href={`mailto:${CONTACT_EMAIL}`}
                 className="flex items-center gap-3 font-sans text-sm text-white/85 transition-colors hover:text-white"
               >
                 <Mail size={17} className="shrink-0 text-white/70" />
-                agmartillera@gmail.com
+                {CONTACT_EMAIL}
               </a>
             </div>
           </div>

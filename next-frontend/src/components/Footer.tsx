@@ -1,13 +1,17 @@
+'use client';
+
+import { useId, useState, type ReactNode } from 'react';
 import Link from 'next/link';
-import { Phone, Mail, MapPin, Instagram, Linkedin } from 'lucide-react';
+import { Phone, Mail, MapPin, ChevronDown } from 'lucide-react';
+import { cn } from '@/lib/cn';
 import { BrandLogo } from '@/components/BrandLogo';
-import { PHONE_DISPLAY, PHONE_WA } from '@/components/Header';
+import { Collapse } from '@/components/ui/Collapse';
+import { PHONE_DISPLAY, CONTACT_EMAIL, CONTACT_ADDRESS, waLink } from '@/constants/contact';
 
 const NAV_LINKS = [
   { label: 'Inicio', href: '/' },
   { label: 'Propiedades', href: '/properties' },
   { label: 'Nosotros', href: '/#nosotros' },
-  { label: 'Servicios', href: '/#trabajamos' },
   { label: 'Contacto', href: '/#contacto' },
 ];
 
@@ -16,83 +20,57 @@ const SERVICIOS = ['Tasaciones', 'Asesoramiento legal', 'Administración', 'Come
 export default function Footer() {
   return (
     <footer id="contacto" className="border-t border-arena bg-crema">
-      <div className="container-max grid gap-10 py-14 lg:grid-cols-[1.5fr_1fr_1fr_1fr_0.8fr]">
-        <div>
-          <Link href="/" aria-label="Ir al inicio">
-            <BrandLogo />
-          </Link>
-          <p className="mt-5 max-w-xs text-sm leading-relaxed text-noche/70">
-            Inmobiliaria en Tandil. Te ayudamos a comprar, vender o alquilar que
-            confianza y cercanía.
-          </p>
+      <div className="container-max py-14">
+        <div className="hidden gap-10 xl:grid xl:grid-cols-4">
+          <div>
+            <Link href="/" aria-label="Ir al inicio">
+              <BrandLogo />
+            </Link>
+            <p className="mt-5 max-w-xs text-sm leading-relaxed text-noche/70">
+              Inmobiliaria en Tandil. Te ayudamos a comprar, vender o alquilar que
+              confianza y cercanía.
+            </p>
+          </div>
+
+          <FooterColumn title="Navegación">
+            <NavBody />
+          </FooterColumn>
+
+          <FooterColumn title="Servicios">
+            <ServicesBody />
+          </FooterColumn>
+
+          <FooterColumn title="Contacto">
+            <ContactBody />
+          </FooterColumn>
         </div>
 
-        <FooterColumn title="Navegación">
-          {NAV_LINKS.map((link) => (
-            <li key={link.label}>
-              <Link href={link.href} className="text-noche/80 transition-colors hover:text-verde">
-                {link.label}
-              </Link>
-            </li>
-          ))}
-        </FooterColumn>
+        <div className="xl:hidden">
+          <div className="border-b border-arena pb-6 text-center">
+            <Link href="/" aria-label="Ir al inicio" className="inline-flex">
+              <BrandLogo />
+            </Link>
+            <p className="mx-auto mt-4 max-w-xs text-sm leading-relaxed text-noche/70">
+              Inmobiliaria en Tandil. Te ayudamos a comprar, vender o alquilar que
+              confianza y cercanía.
+            </p>
+          </div>
 
-        <FooterColumn title="Servicios">
-          {SERVICIOS.map((s) => (
-            <li key={s} className="text-noche/80">
-              {s}
-            </li>
-          ))}
-        </FooterColumn>
-
-        <FooterColumn title="Contacto">
-          <li>
-            <a
-              href={`https://wa.me/${PHONE_WA}`}
-              className="flex items-center gap-2 text-noche/80 transition-colors hover:text-verde"
-            >
-              <Phone size={15} className="shrink-0 text-verde" />
-              {PHONE_DISPLAY}
-            </a>
-          </li>
-          <li>
-            <a
-              href="mailto:agmartillera@gmail.com"
-              className="flex items-center gap-2 break-all text-noche/80 transition-colors hover:text-verde"
-            >
-              <Mail size={15} className="shrink-0 text-verde" />
-              agmartillera@gmail.com
-            </a>
-          </li>
-          <li className="flex items-center gap-2 text-noche/80">
-            <MapPin size={15} className="shrink-0 text-verde" />
-            Tandil, Buenos Aires
-          </li>
-        </FooterColumn>
-
-        <FooterColumn title="Seguinos">
-          <li className="flex items-center gap-3">
-            <a
-              href="#"
-              aria-label="Instagram"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-arena text-noche/70 transition-colors hover:border-verde hover:text-verde"
-            >
-              <Instagram size={17} />
-            </a>
-            <a
-              href="#"
-              aria-label="LinkedIn"
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-arena text-noche/70 transition-colors hover:border-verde hover:text-verde"
-            >
-              <Linkedin size={17} />
-            </a>
-          </li>
-        </FooterColumn>
+          <MobileSection title="Navegación">
+            <NavBody />
+          </MobileSection>
+          <MobileSection title="Servicios">
+            <ServicesBody />
+          </MobileSection>
+          <MobileSection title="Contacto">
+            <ContactBody />
+          </MobileSection>
+        </div>
       </div>
 
       <div className="border-t border-arena">
         <div className="container-max py-5 text-center font-sans text-xs text-noche/50">
-          © {new Date().getFullYear()} © Agustina García Inmobiliaria. Todos los derechos
+          © {new Date().getFullYear()} Agustina García Inmobiliaria. Todos los derechos
           reservados.
         </div>
       </div>
@@ -100,13 +78,96 @@ export default function Footer() {
   );
 }
 
-function FooterColumn({ title, children }: { title: string; children: React.ReactNode }) {
+function FooterColumn({ title, children }: { title: string; children: ReactNode }) {
   return (
     <div>
-      <h3 className="mb-4 font-display text-[0.8rem] font-semibold uppercase tracking-widecaps text-noche/50">
+      <h3 className="mb-4 font-sans text-[0.8rem] font-semibold uppercase tracking-widecaps text-noche/50">
         {title}
       </h3>
-      <ul className="space-y-2.5 text-sm">{children}</ul>
+      {children}
     </div>
+  );
+}
+
+function MobileSection({ title, children }: { title: string; children: ReactNode }) {
+  const [open, setOpen] = useState(false);
+  const panelId = useId();
+
+  return (
+    <div className="border-b border-arena">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        aria-controls={panelId}
+        className="flex w-full items-center justify-between py-4 text-left font-sans text-sm font-semibold uppercase tracking-widecaps text-noche/60"
+      >
+        {title}
+        <ChevronDown
+          size={18}
+          className={cn('shrink-0 text-noche/40 transition-transform duration-200', open && 'rotate-180')}
+        />
+      </button>
+      <Collapse open={open}>
+        <div id={panelId} className="pb-4">
+          {children}
+        </div>
+      </Collapse>
+    </div>
+  );
+}
+
+function NavBody() {
+  return (
+    <ul className="space-y-2.5 text-sm">
+      {NAV_LINKS.map((link) => (
+        <li key={link.label}>
+          <Link href={link.href} className="text-noche/80 transition-colors hover:text-verde">
+            {link.label}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function ServicesBody() {
+  return (
+    <ul className="space-y-2.5 text-sm">
+      {SERVICIOS.map((s) => (
+        <li key={s} className="text-noche/80">
+          {s}
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+function ContactBody() {
+  return (
+    <ul className="space-y-2.5 text-sm">
+      <li>
+        <a
+          href={waLink()}
+          className="flex items-center gap-2 text-noche/80 transition-colors hover:text-verde"
+        >
+          <Phone size={15} className="shrink-0 text-verde" />
+          {PHONE_DISPLAY}
+        </a>
+      </li>
+      <li>
+        <a
+          href={`mailto:${CONTACT_EMAIL}`}
+          className="flex items-center gap-2 whitespace-nowrap text-noche/80 transition-colors hover:text-verde"
+        >
+          <Mail size={15} className="shrink-0 text-verde" />
+          {CONTACT_EMAIL}
+        </a>
+      </li>
+      <li className="flex items-center gap-2 text-noche/80">
+        <MapPin size={15} className="shrink-0 text-verde" />
+        {CONTACT_ADDRESS}
+      </li>
+    </ul>
   );
 }

@@ -95,7 +95,7 @@ export default async function PropertyDetailPage({ params }: DetailProps) {
             <Gallery images={property.images} title={property.title} />
 
             <section>
-              <h2 className="font-display text-3xl leading-tight">Acerca de esta propiedad</h2>
+              <h2 className="font-sans text-3xl leading-tight">Acerca de esta propiedad</h2>
               <div className="mt-5 space-y-4 text-[0.975rem] leading-relaxed text-noche/85">
                 {property.description.split(/\r?\n/).filter(Boolean).map((paragraph, i) => (
                   <p key={i}>{paragraph}</p>
@@ -131,7 +131,7 @@ export default async function PropertyDetailPage({ params }: DetailProps) {
                 {operationLabel(property.operation)} · {property.propertyType}
               </span>
 
-              <h1 className="mt-5 font-display text-4xl leading-[1.05] sm:text-5xl">
+              <h1 className="mt-5 font-sans text-4xl leading-[1.05] sm:text-5xl">
                 {property.title}
               </h1>
 
@@ -145,7 +145,7 @@ export default async function PropertyDetailPage({ params }: DetailProps) {
 
               <div className="mt-6 border-y border-arena py-5">
                 <p className="eyebrow">Precio</p>
-                <p className="mt-2 font-display text-4xl tracking-tight text-noche">
+                <p className="mt-2 font-sans text-4xl tracking-tight text-noche">
                   {property.price?.hidden ? 'Consultar' : formatPrice(property.price)}
                 </p>
                 {property.expensas && (

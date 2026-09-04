@@ -36,7 +36,7 @@ export default function PropertyCard({ property }: { property: PublicPropertyDto
       </div>
 
       <div className="flex flex-1 flex-col p-5">
-        <h3 className="font-display text-xl leading-snug text-noche transition-colors group-hover:text-verde">
+        <h3 className="font-sans text-xl leading-snug text-noche transition-colors group-hover:text-verde">
           {property.title}
         </h3>
 
@@ -69,7 +69,7 @@ export default function PropertyCard({ property }: { property: PublicPropertyDto
 
         {property.price?.hidden === false && (
           <div className="mt-4 border-t border-arena pt-4">
-            <p className="font-display text-xl font-semibold text-noche">
+            <p className="font-sans text-xl font-semibold text-noche">
               {formatPrice(property.price)}
             </p>
           </div>

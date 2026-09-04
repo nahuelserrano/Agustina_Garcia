@@ -102,6 +102,10 @@ export interface PublicPropertyDto {
   isMortgageEligible?: boolean;
 }
 
+export interface PropertyTypesResponse {
+  types: string[];
+}
+
 export interface PaginatedPropertiesResponse {
   items: PublicPropertyDto[];
   pagination: {

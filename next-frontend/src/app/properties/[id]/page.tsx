@@ -18,7 +18,7 @@ import {
 import Gallery from '@/components/Gallery';
 import ContactForm from '@/components/ContactForm';
 import { fetchProperty } from '@/lib/api/properties';
-import { formatPrice, operationLabel, isRent, formatDate, formatLocation } from '@/lib/format';
+import { formatPrice, operationLabel, isRent, formatLocation, propertyTypeLabel } from '@/lib/format';
 
 interface DetailProps {
   params: { id: string };
@@ -62,8 +62,7 @@ export default async function PropertyDetailPage({ params }: DetailProps) {
     },
     { label: 'Ambientes', value: property.features?.rooms, Icon: Home, suffix: '' },
   ].filter((f) => f.value !== undefined && f.value !== null && f.value > 0);
-
-  const extras = [
+  [
     property.condition && { label: 'Estado', value: property.condition, Icon: Info },
     property.antiquityYears !== undefined && {
       label: 'Antigüedad',
@@ -77,7 +76,6 @@ export default async function PropertyDetailPage({ params }: DetailProps) {
       Icon: Banknote,
     },
   ].filter(Boolean) as { label: string; value: string; Icon: typeof Info }[];
-
   return (
     <div className="px-5 pb-24 pt-12 sm:px-8">
       <div className="mx-auto max-w-7xl">
@@ -95,7 +93,7 @@ export default async function PropertyDetailPage({ params }: DetailProps) {
             <Gallery images={property.images} title={property.title} />
 
             <section>
-              <h2 className="font-display text-3xl leading-tight">Acerca de esta propiedad</h2>
+              <h2 className="font-sans text-3xl leading-tight">Acerca de esta propiedad</h2>
               <div className="mt-5 space-y-4 text-[0.975rem] leading-relaxed text-noche/85">
                 {property.description.split(/\r?\n/).filter(Boolean).map((paragraph, i) => (
                   <p key={i}>{paragraph}</p>
@@ -128,10 +126,10 @@ export default async function PropertyDetailPage({ params }: DetailProps) {
                   rent ? 'bg-noche text-white' : 'bg-verde text-white'
                 }`}
               >
-                {operationLabel(property.operation)} · {property.propertyType}
+                {operationLabel(property.operation)} · {propertyTypeLabel(property.propertyType)}
               </span>
 
-              <h1 className="mt-5 font-display text-4xl leading-[1.05] sm:text-5xl">
+              <h1 className="mt-5 font-sans text-4xl leading-[1.05] sm:text-5xl">
                 {property.title}
               </h1>
 
@@ -145,7 +143,7 @@ export default async function PropertyDetailPage({ params }: DetailProps) {
 
               <div className="mt-6 border-y border-arena py-5">
                 <p className="eyebrow">Precio</p>
-                <p className="mt-2 font-display text-4xl tracking-tight text-noche">
+                <p className="mt-2 font-sans text-4xl tracking-tight text-noche">
                   {property.price?.hidden ? 'Consultar' : formatPrice(property.price)}
                 </p>
                 {property.expensas && (
@@ -177,26 +175,6 @@ export default async function PropertyDetailPage({ params }: DetailProps) {
           </aside>
         </div>
       </div>
-    </div>
-  );
-}
-
-function Row({
-  label,
-  value,
-  Icon,
-}: {
-  label: string;
-  value: string;
-  Icon?: typeof Info;
-}) {
-  return (
-    <div className="flex items-start justify-between gap-4">
-      <dt className="flex items-center gap-2 text-sm text-noche/60">
-        {Icon && <Icon size={15} className="shrink-0 text-verde" aria-hidden />}
-        {label}
-      </dt>
-      <dd className="text-right text-sm font-semibold capitalize text-noche">{value}</dd>
     </div>
   );
 }

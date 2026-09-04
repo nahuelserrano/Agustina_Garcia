@@ -3,6 +3,9 @@ import type { Config } from 'tailwindcss';
 const config: Config = {
   content: ['./src/**/*.{ts,tsx}'],
   theme: {
+    container: {
+      center: true,
+    },
     extend: {
       colors: {
         crema: {
@@ -32,10 +35,10 @@ const config: Config = {
         menta: '#C3E1D9',
         salvia: '#BAD6C2',
         arena: '#E4DCC8',
+        dorado: '#d0b669',
       },
       fontFamily: {
-        display: ['var(--font-jost)', 'system-ui', 'sans-serif'],
-        sans: ['var(--font-hanken)', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
       },
       letterSpacing: {
         widecaps: '0.22em',

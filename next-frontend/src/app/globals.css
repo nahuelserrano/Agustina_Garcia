@@ -17,7 +17,7 @@ html {
 body {
   background-color: var(--crema);
   color: var(--noche);
-  font-family: var(--font-hanken), system-ui, sans-serif;
+  font-family: var(--font-inter), system-ui, sans-serif;
 }
 
 ::selection {
@@ -26,6 +26,33 @@ body {
 }
 
 @layer components {
+  .hero-bg {
+    background-image:
+      url('/background-hero.jpg'),
+      linear-gradient(180deg, #eae9e8 0%, #eaeae8 10%, #e9e9e8 20%, #eae9e8 30%, #e8e8e7 40%, #e7e6e5 50%, #e6e5e4 60%, #e6e4e2 70%, #e2e0de 80%, #e1dfdd 90%, #dddbda 100%);
+    background-repeat: no-repeat, no-repeat;
+    background-position: right center, left top;
+    background-size: auto 150%, 100% 100%;
+  }
+
+  @media (max-width: 1279px) and (min-width: 1024px) {
+    .hero-bg {
+      background-image:
+        url('/background-hero.jpg'),
+        linear-gradient(180deg, #e9e9e7 0%, #ebeae9 10%, #eae9e8 20%, #e9e9e8 30%, #e8e8e7 40%, #e7e6e5 50%, #e5e4e3 60%, #e2e0de 70%, #dedcdb 80%, #d8d6d4 90%, #d5d2d1 100%);
+      background-size: auto 100%, 100% 100%;
+    }
+  }
+
+  @media (max-width: 1023px) {
+    .hero-bg {
+      background-image: linear-gradient(180deg, #e9e9e7 0%, #ebeae9 10%, #eae9e8 20%, #e9e9e8 30%, #e8e8e7 40%, #e7e6e5 50%, #e5e4e3 60%, #e2e0de 70%, #dedcdb 80%, #d8d6d4 90%, #d5d2d1 100%);
+      background-repeat: no-repeat;
+      background-position: left top;
+      background-size: 100% 100%;
+    }
+  }
+
   .container-max {
     @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
   }
@@ -35,7 +62,7 @@ body {
   }
 
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full font-display text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-verde focus-visible:ring-offset-2 focus-visible:ring-offset-crema;
+    @apply inline-flex items-center justify-center gap-2 rounded-full font-sans text-sm font-medium transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-verde focus-visible:ring-offset-2 focus-visible:ring-offset-crema;
   }
 
   .btn-primary {

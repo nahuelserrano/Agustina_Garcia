@@ -29,6 +29,24 @@ export async function fetchProperties(query: PropertyQuery): Promise<PaginatedPr
   return response.json() as Promise<PaginatedPropertiesResponse>;
 }
 
+/**
+ * Lista de tipos de propiedad presentes en las propiedades publicadas de la
+ * inmobiliaria. Se usa para armar el desplegable "Tipo de propiedad".
+ */
+export async function fetchPropertyTypes(): Promise<string[]> {
+  const response = await fetch(`${API_URL}/properties/property-types`, {
+    headers: { Accept: 'application/json' },
+    next: { revalidate: REVALIDATE_SECONDS },
+  });
+
+  if (!response.ok) {
+    throw new Error(`No se pudieron cargar los tipos de propiedad (${response.status})`);
+  }
+
+  const data = (await response.json()) as { types?: string[] };
+  return data.types ?? [];
+}
+
 /** Detalle individual de una propiedad por ID. */
 export async function fetchProperty(id: string): Promise<PublicPropertyDto> {
   const response = await fetch(`${API_URL}/properties/${encodeURIComponent(id)}`, {

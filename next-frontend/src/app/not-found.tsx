@@ -7,8 +7,8 @@ export default function NotFound() {
       <span className="flex h-16 w-16 items-center justify-center rounded-full bg-verde/10 text-verde">
         <Mountain size={30} strokeWidth={1.5} aria-hidden />
       </span>
-      <p className="mt-6 font-display text-6xl leading-none">404</p>
-      <h1 className="mt-4 font-display text-3xl leading-tight">
+      <p className="mt-6 font-sans text-6xl leading-none">404</p>
+      <h1 className="mt-4 font-sans text-3xl leading-tight">
         No encontramos lo que buscás
       </h1>
       <p className="mt-3 max-w-md text-sm leading-relaxed text-noche/70">

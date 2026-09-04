@@ -29,6 +29,33 @@ export function operationLabel(operation: string): string {
   return OPERATION_LABELS[operation.toLowerCase()] ?? operation;
 }
 
+const PROPERTY_TYPE_LABELS: Record<string, string> = {
+  casa: 'Casa',
+  departamento: 'Departamento',
+  campo: 'Campo',
+  local_comercial: 'Local comercial',
+  lote: 'Lote',
+  quinta: 'Quinta',
+  galpon: 'Galpón',
+  cabanas_hoteles_otros: 'Cabañas, hoteles y otros',
+  fondo_comercio: 'Fondo de comercio',
+  cochera: 'Cochera',
+  al_pozo: 'Al pozo',
+};
+
+/** Etiqueta hum�ana del tipo de propiedad. Si no se conoce, usa el valor con
+ *  cada palabra capitalizada (ej. "local_comercial" → "Local Comercial"). */
+export function propertyTypeLabel(propertyType: string): string {
+  const key = propertyType.trim().toLowerCase();
+  if (PROPERTY_TYPE_LABELS[key]) return PROPERTY_TYPE_LABELS[key];
+
+  return key
+    .split('_')
+    .filter(Boolean)
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+}
+
 export function isRent(operation: string): boolean {
   const op = operation.toLowerCase();
   return op === 'alquiler' || op === 'rent' || op === 'renta';

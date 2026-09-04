@@ -2,6 +2,7 @@
 
 import { useId, useState, type ReactNode } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Phone, Mail, MapPin, ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/cn';
 import { BrandLogo } from '@/components/BrandLogo';
@@ -69,9 +70,23 @@ export default function Footer() {
       </div>
 
       <div className="border-t border-arena">
-        <div className="container-max py-5 text-center font-sans text-xs text-noche/50">
-          © {new Date().getFullYear()} Agustina García Inmobiliaria. Todos los derechos
-          reservados.
+        <div className="relative py-5">
+          <div className="container-max text-center font-sans text-xs text-noche/50">
+            © {new Date().getFullYear()} Agustina García Inmobiliaria. Todos los derechos
+            reservados.
+          </div>
+          <div className="absolute bottom-full left-0 right-0 mb-3 flex items-center justify-center gap-3 pr-0 sm:pr-6 lg:justify-end">
+            <span className="hidden font-sans text-lg text-noche/50 lg:inline">Forma parte de</span>
+            <a href="https://tandilprop.com.ar" target="_blank" rel="noopener noreferrer" aria-label="TandilProp">
+              <Image
+                src="/logo-tandilprop.png"
+                alt="TandilProp"
+                width={888}
+                height={239}
+                className="h-10 w-auto lg:h-12"
+              />
+            </a>
+          </div>
         </div>
       </div>
     </footer>

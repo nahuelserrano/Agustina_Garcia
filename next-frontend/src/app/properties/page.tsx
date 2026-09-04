@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import { Suspense } from 'react';
 import FilterBar from '@/components/FilterBar';
 import PropertyGrid from '@/components/PropertyGrid';
-import { fetchProperties } from '@/lib/api/properties';
+import { fetchProperties, fetchPropertyTypes } from '@/lib/api/properties';
 import { parsePropertyQuery, buildPropertySearchParams } from '@/lib/validations/property';
 
 export const metadata: Metadata = {
@@ -18,6 +18,7 @@ export default async function PropertiesPage({
 }) {
   const { parsed } = parsePropertyQuery(searchParams);
   const data = await fetchProperties({ ...parsed, pageSize: PAGE_SIZE });
+  const propertyTypes = await fetchPropertyTypes().catch(() => []);
   const preserveParams = buildPropertySearchParams({ ...parsed, page: parsed.page });
 
   return (
@@ -28,16 +29,11 @@ export default async function PropertiesPage({
           <h1 className="mt-3 font-sans text-4xl leading-tight sm:text-5xl">
             Propiedades en Tandil
           </h1>
-          <p className="mt-3 max-w-xl text-sm leading-relaxed text-noche/70">
-            {data.pagination.total} propiedad{data.pagination.total === 1 ? '' : 'es'}
-            {data.pagination.total !== 1 ? 's disponibles' : ' disponible'} en los
-            cerros de Tandil, Buenos Aires.
-          </p>
         </header>
 
         <div className="mb-10">
           <Suspense fallback={<div className="h-56 rounded-2xl bg-cream-200/50" />}>
-            <FilterBar variant="full" />
+            <FilterBar variant="full" propertyTypes={propertyTypes} />
           </Suspense>
         </div>
 

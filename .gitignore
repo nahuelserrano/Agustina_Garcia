@@ -1,0 +1,21 @@
+# dependencies
+node_modules/
+
+# build output
+dist/
+build/
+
+# next.js
+.next/
+out/
+
+# IDE / editor
+.idea/
+.vscode/
+
+# misc
+.DS_Store
+*.log
+
+# typescript
+*.tsbuildinfo

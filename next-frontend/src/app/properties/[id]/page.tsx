@@ -18,7 +18,7 @@ import {
 import Gallery from '@/components/Gallery';
 import ContactForm from '@/components/ContactForm';
 import { fetchProperty } from '@/lib/api/properties';
-import { formatPrice, operationLabel, isRent, formatDate, formatLocation } from '@/lib/format';
+import { formatPrice, operationLabel, isRent, formatDate, formatLocation, propertyTypeLabel } from '@/lib/format';
 
 interface DetailProps {
   params: { id: string };
@@ -128,7 +128,7 @@ export default async function PropertyDetailPage({ params }: DetailProps) {
                   rent ? 'bg-noche text-white' : 'bg-verde text-white'
                 }`}
               >
-                {operationLabel(property.operation)} · {property.propertyType}
+                {operationLabel(property.operation)} · {propertyTypeLabel(property.propertyType)}
               </span>
 
               <h1 className="mt-5 font-sans text-4xl leading-[1.05] sm:text-5xl">

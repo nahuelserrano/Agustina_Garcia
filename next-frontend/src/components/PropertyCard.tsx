@@ -13,7 +13,7 @@ import {
   MapPin,
 } from 'lucide-react';
 import type { PublicPropertyDto } from '@/types/property';
-import { formatPrice, operationLabel, formatLocation } from '@/lib/format';
+import { formatPrice, operationLabel, formatLocation, propertyTypeLabel } from '@/lib/format';
 
 export default function PropertyCard({ property }: { property: PublicPropertyDto }) {
   const images = property.images ?? [];
@@ -91,7 +91,7 @@ export default function PropertyCard({ property }: { property: PublicPropertyDto
           </span>
           {property.propertyType && (
             <span className="rounded-lg bg-dorado px-3 py-1.5 text-sm font-semibold uppercase tracking-widecaps text-white">
-              {property.propertyType}
+              {propertyTypeLabel(property.propertyType)}
             </span>
           )}
         </div>

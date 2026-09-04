@@ -3,6 +3,7 @@ import { PropertiesService } from './properties.service';
 import {
   GetPropertiesQueryDto,
   PublicPropertyDto,
+  PropertyTypesResponse,
   PaginatedPropertiesResponse,
 } from './dto/properties.dto';
 
@@ -13,6 +14,11 @@ export class PropertiesController {
   @Get()
   async findAll(@Query() query: GetPropertiesQueryDto): Promise<PaginatedPropertiesResponse> {
     return this.propertiesService.findAll(query);
+  }
+
+  @Get('property-types')
+  async findPropertyTypes(): Promise<PropertyTypesResponse> {
+    return this.propertiesService.getPropertyTypes();
   }
 
   @Get(':id')

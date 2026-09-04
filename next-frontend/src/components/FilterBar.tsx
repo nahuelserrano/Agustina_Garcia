@@ -8,6 +8,7 @@ import { z } from 'zod';
 import { Search, RotateCcw, SlidersHorizontal } from 'lucide-react';
 import { buildPropertySearchParams } from '@/lib/validations/property';
 import type { PropertyQuery } from '@/lib/validations/property';
+import { propertyTypeLabel } from '@/lib/format';
 
 const filterSchema = z.object({
   operacion: z.string().optional(),
@@ -33,15 +34,6 @@ const DEFAULT_VALUES: FilterValues = {
   garage: '',
 };
 
-const TIPOS = [
-  { value: 'casa', label: 'Casa' },
-  { value: 'departamento', label: 'Departamento' },
-  { value: 'cochera', label: 'Cochera' },
-  { value: 'local', label: 'Local' },
-  { value: 'terreno', label: 'Terreno' },
-  { value: 'cabaña', label: 'Cabaña' },
-];
-
 const selectClass =
   'w-full rounded-lg border border-arena bg-white px-3.5 py-2.5 text-sm text-noche transition-colors focus:border-verde focus:outline-none focus:ring-2 focus:ring-verde/25';
 
@@ -62,19 +54,20 @@ function toQuery(values: FilterValues): PropertyQuery {
 
 interface FilterBarProps {
   variant?: 'home' | 'full';
+  propertyTypes: string[];
 }
 
-export default function FilterBar({ variant = 'full' }: FilterBarProps) {
+export default function FilterBar({ variant = 'full', propertyTypes }: FilterBarProps) {
   if (variant === 'home') {
-    return <HomeForm />;
+    return <HomeForm propertyTypes={propertyTypes} />;
   }
-  return <FullForm />;
+  return <FullForm propertyTypes={propertyTypes} />;
 }
 
 /* ------------------------------------------------------------------ Home (fila)
    No lee la URL: es el punto de entrada desde el inicio. Se renderiza en el
    servidor (sin destello) y empuja la búsqueda a /properties. */
-function HomeForm() {
+function HomeForm({ propertyTypes }: { propertyTypes: string[] }) {
   const router = useRouter();
   const { register, handleSubmit } = useForm<FilterValues>({
     resolver: zodResolver(filterSchema),
@@ -110,9 +103,9 @@ function HomeForm() {
           </label>
           <select id="f-tipo" className={selectClass} {...register('tipo')}>
             <option value="">Todos</option>
-            {TIPOS.map((t) => (
-              <option key={t.value} value={t.value}>
-                {t.label}
+            {propertyTypes.map((type) => (
+              <option key={type} value={type}>
+                {propertyTypeLabel(type)}
               </option>
             ))}
           </select>
@@ -120,7 +113,7 @@ function HomeForm() {
 
         <div>
           <label htmlFor="f-maxValue" className="field-label">
-            Precio hasta
+            Precio máximo
           </label>
           <input
             id="f-maxValue"
@@ -144,7 +137,7 @@ function HomeForm() {
 /* -------------------------------------------------------------- Full (filtros)
    Lee la URL para mantener el estado inicial y empuja cambios a la barra de
    direcciones (URL-first). Requiere estar dentro de <Suspense> en la vista. */
-function FullForm() {
+function FullForm({ propertyTypes }: { propertyTypes: string[] }) {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -217,9 +210,9 @@ function FullForm() {
           </label>
           <select id="f-tipo" className={selectClass} {...register('tipo')}>
             <option value="">Cualquier tipo</option>
-            {TIPOS.map((t) => (
-              <option key={t.value} value={t.value}>
-                {t.label}
+            {propertyTypes.map((type) => (
+              <option key={type} value={type}>
+                {propertyTypeLabel(type)}
               </option>
             ))}
           </select>

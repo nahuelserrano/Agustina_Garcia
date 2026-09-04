@@ -6,6 +6,7 @@ import { AxiosError } from 'axios';
 import {
   GetPropertiesQueryDto,
   PublicPropertyDto,
+  PropertyTypesResponse,
   PaginatedPropertiesResponse,
 } from './dto/properties.dto';
 
@@ -61,6 +62,23 @@ export class PropertiesService {
       return response.data;
     } catch (error) {
       this.logger.error(`Error al consultar propiedad ${id} en TandilProp`, error);
+      this.handleHttpError(error);
+    }
+  }
+
+  async getPropertyTypes(): Promise<PropertyTypesResponse> {
+    try {
+      const url = `${this.baseUrl}/api/public/inmobiliarias/${this.slug}/property-types`;
+
+      const response = await firstValueFrom(
+        this.httpService.get<PropertyTypesResponse>(url, {
+          headers: { Accept: 'application/json' },
+        }),
+      );
+
+      return response.data;
+    } catch (error) {
+      this.logger.error('Error al consultar tipos de propiedad en TandilProp', error);
       this.handleHttpError(error);
     }
   }

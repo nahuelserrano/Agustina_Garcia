@@ -15,6 +15,7 @@ import {
   Info,
 } from 'lucide-react';
 import Gallery from '@/components/Gallery';
+import PropertyMap from '@/components/map/PropertyMap';
 import WhatsAppIcon from '@/components/WhatsAppIcon';
 import { fetchProperty } from '@/lib/api/properties';
 import { formatPrice, operationLabel, isRent, formatLocation, propertyTypeLabel } from '@/lib/format';
@@ -43,6 +44,7 @@ export default async function PropertyDetailPage({ params }: DetailProps) {
 
   const rent = isRent(property.operation);
   const location = formatLocation(property.location ?? { city: '' });
+  const { lat, lng } = property.location?.coordinates ?? {};
 
   const features = [
     { label: 'Dormitorios', value: property.features?.bedrooms, Icon: BedDouble, suffix: '' },
@@ -153,7 +155,9 @@ export default async function PropertyDetailPage({ params }: DetailProps) {
               </a>
             </div>
           </aside>
+        </div>
 
+        <div className="mt-12 grid gap-10 lg:grid-cols-[1.6fr_1fr]">
           <section className="min-w-0">
             <h2 className="font-sans text-3xl leading-tight">Acerca de esta propiedad</h2>
             <div className="mt-5 space-y-4 text-[0.975rem] leading-relaxed text-noche/85">
@@ -177,6 +181,13 @@ export default async function PropertyDetailPage({ params }: DetailProps) {
                 </div>
               </div>
             )}
+          </section>
+
+          <section className="min-w-0">
+            <h2 className="font-sans text-3xl leading-tight">Ubicación</h2>
+            <div className="mt-5">
+              <PropertyMap lat={lat} lng={lng} />
+            </div>
           </section>
         </div>
       </div>

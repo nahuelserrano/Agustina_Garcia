@@ -17,7 +17,8 @@ export const metadata: Metadata = {
     template: '%s · Agustina García Inmobiliaria',
   },
   description:
-    'Inmobiliaria en Tandil, Buenos Aires. Te ayudamos a comprar, vender o alquilar propiedades con confianza y asesoramiento personalizado.',
+    'Inmobiliaria en Tandil. Te ayudamos a comprar, vender o alquilar propiedades con confianza y asesoramiento personalizado.',
+  icons: { icon: '/favicon.ico'},
 };
 
 export default function RootLayout({

@@ -22,7 +22,7 @@ function WhatsAppLink({ label }: { label: string }) {
       href={waLink()}
       target="_blank"
       rel="noopener noreferrer"
-      className="btn btn-primary gap-2.5 px-7 py-3.5 text-base"
+      className="btn btn-primary gap-2.5 whitespace-nowrap px-5 py-3 text-sm xl:gap-2.5 xl:px-7 xl:py-3.5 xl:text-base"
     >
       <WhatsAppIcon size={22} />
       {label}
@@ -60,14 +60,14 @@ export default function Header() {
           <BrandLogo />
         </Link>
 
-        <nav className="hidden items-center gap-14 lg:flex">
+        <nav className="hidden items-center gap-8 lg:flex xl:gap-14">
           {NAV.map((item) => {
             const active = !item.anchor && pathname === item.href;
             return (
               <Link
                 key={item.label}
                 href={item.href}
-                className={`relative pb-1 font-sans text-lg font-medium transition-colors ${
+                className={`relative pb-1 font-sans text-base font-medium transition-colors xl:text-lg ${
                   active ? 'text-verde' : 'text-noche hover:text-verde'
                 }`}
               >

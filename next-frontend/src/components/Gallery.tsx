@@ -4,7 +4,15 @@ import { useState } from 'react';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
-export default function Gallery({ images, title }: { images: string[]; title: string }) {
+export default function Gallery({
+  images,
+  title,
+  priority = false,
+}: {
+  images: string[];
+  title: string;
+  priority?: boolean;
+}) {
   const [active, setActive] = useState(0);
   const hasImages = images && images.length > 0;
   const main = hasImages ? images[active] : null;
@@ -14,15 +22,15 @@ export default function Gallery({ images, title }: { images: string[]; title: st
 
   return (
     <div>
-      <div className="relative aspect-[4/3] overflow-hidden rounded-2xl bg-crema-200/60 sm:aspect-[16/10]">
+      <div className="relative aspect-[16/10] overflow-hidden rounded-2xl bg-crema-200/60">
         {main ? (
           <Image
             src={main}
             alt={`${title} — foto ${active + 1}`}
             fill
-            priority
-            sizes="(min-width: 1024px) 66vw, 100vw"
-            className="object-cover"
+            priority={priority}
+            sizes="(max-width: 1024px) 100vw, 60vw"
+            className="object-cover object-center"
           />
         ) : (
           <div className="flex h-full w-full items-center justify-center text-noche/40">

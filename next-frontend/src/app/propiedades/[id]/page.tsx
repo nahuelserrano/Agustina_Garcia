@@ -9,16 +9,16 @@ import {
   CarFront,
   Ruler,
   Maximize,
-  Home,
   Compass,
   Calendar,
   Banknote,
   Info,
 } from 'lucide-react';
 import Gallery from '@/components/Gallery';
-import ContactForm from '@/components/ContactForm';
+import WhatsAppIcon from '@/components/WhatsAppIcon';
 import { fetchProperty } from '@/lib/api/properties';
 import { formatPrice, operationLabel, isRent, formatLocation, propertyTypeLabel } from '@/lib/format';
+import { PHONE_WA } from '@/constants/contact';
 
 interface DetailProps {
   params: { id: string };
@@ -60,7 +60,6 @@ export default async function PropertyDetailPage({ params }: DetailProps) {
       Icon: Maximize,
       suffix: 'm²',
     },
-    { label: 'Ambientes', value: property.features?.rooms, Icon: Home, suffix: '' },
   ].filter((f) => f.value !== undefined && f.value !== null && f.value > 0);
   [
     property.condition && { label: 'Estado', value: property.condition, Icon: Info },
@@ -88,38 +87,12 @@ export default async function PropertyDetailPage({ params }: DetailProps) {
         </Link>
 
         <div className="grid gap-10 lg:grid-cols-[1.6fr_1fr]">
-          {/* Columna izquierda: galería + descripción (pegada a las imágenes) */}
-          <div className="flex flex-col gap-12">
-            <Gallery images={property.images} title={property.title} />
-
-            <section>
-              <h2 className="font-sans text-3xl leading-tight">Acerca de esta propiedad</h2>
-              <div className="mt-5 space-y-4 text-[0.975rem] leading-relaxed text-noche/85">
-                {property.description.split(/\r?\n/).filter(Boolean).map((paragraph, i) => (
-                  <p key={i}>{paragraph}</p>
-                ))}
-              </div>
-
-              {property.services && property.services.length > 0 && (
-                <div className="mt-8">
-                  <h3 className="eyebrow">Servicios</h3>
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    {property.services.map((service) => (
-                      <span
-                        key={service}
-                        className="rounded-full border border-arena bg-crema-50 px-3 py-1.5 text-xs font-medium text-noche/80"
-                      >
-                        {service}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-            </section>
+          <div className="min-w-0">
+            <Gallery images={property.images} title={property.title} priority />
           </div>
 
           {/* Columna derecha: resumen + contacto + datos clave */}
-          <aside className="flex flex-col gap-8">
+          <aside className="flex min-w-0 flex-col gap-8">
             <div className="flex flex-col">
               <span
                 className={`self-start rounded-full px-3 py-1 text-[0.7rem] font-semibold uppercase tracking-widecaps ${
@@ -130,16 +103,15 @@ export default async function PropertyDetailPage({ params }: DetailProps) {
               </span>
 
               <h1 className="mt-5 font-sans text-4xl leading-[1.05] sm:text-5xl">
-                {property.title}
+                {location.primary}
               </h1>
 
-              <p className="mt-4 flex items-center gap-2 text-sm text-noche/70">
-                <MapPin size={16} className="shrink-0 text-verde" aria-hidden />
-                <span>
-                  {location.primary}
-                  {location.secondary ? ` · ${location.secondary}` : ''}
-                </span>
-              </p>
+              {location.secondary && (
+                <p className="mt-4 flex items-center gap-2 text-sm text-noche/70">
+                  <MapPin size={16} className="shrink-0 text-verde" aria-hidden />
+                  <span>{location.secondary}</span>
+                </p>
+              )}
 
               <div className="mt-6 border-y border-arena py-5">
                 <p className="eyebrow">Precio</p>
@@ -167,12 +139,45 @@ export default async function PropertyDetailPage({ params }: DetailProps) {
                   ))}
                 </div>
               )}
-            </div>
 
-            <div className="rounded-2xl border border-arena bg-crema-50 p-5">
-              <ContactForm propertyId={property.id} listingTitle={property.title} />
+              <a
+                href={`https://wa.me/${PHONE_WA}?text=${encodeURIComponent(
+                  `Hola, me interesa esta propiedad: ${property.title}`,
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary mt-6 w-full gap-2 px-6 py-3"
+              >
+                <WhatsAppIcon size={18} />
+                Consultar
+              </a>
             </div>
           </aside>
+
+          <section className="min-w-0">
+            <h2 className="font-sans text-3xl leading-tight">Acerca de esta propiedad</h2>
+            <div className="mt-5 space-y-4 text-[0.975rem] leading-relaxed text-noche/85">
+              {property.description.split(/\r?\n/).filter(Boolean).map((paragraph, i) => (
+                <p key={i}>{paragraph}</p>
+              ))}
+            </div>
+
+            {property.services && property.services.length > 0 && (
+              <div className="mt-8">
+                <h3 className="eyebrow">Servicios</h3>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {property.services.map((service) => (
+                    <span
+                      key={service}
+                      className="rounded-full border border-arena bg-crema-50 px-3 py-1.5 text-xs font-medium text-noche/80"
+                    >
+                      {service}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+          </section>
         </div>
       </div>
     </div>

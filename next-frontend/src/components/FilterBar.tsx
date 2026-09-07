@@ -275,7 +275,7 @@ function FullForm({ propertyTypes }: { propertyTypes: string[] }) {
             Operación
           </label>
           <select id="f-operacion" className={selectClass} {...register('operacion')}>
-            <option value="">Toda operación</option>
+            <option value="">Todas</option>
             <option value="venta">Venta</option>
             <option value="alquiler">Alquiler</option>
           </select>
@@ -287,7 +287,7 @@ function FullForm({ propertyTypes }: { propertyTypes: string[] }) {
             Tipo de propiedad
           </label>
           <select id="f-tipo" className={selectClass} {...register('tipo')}>
-            <option value="">Cualquier tipo</option>
+            <option value="">Todos</option>
             {propertyTypes.map((type) => (
               <option key={type} value={type}>
                 {propertyTypeLabel(type)}

@@ -7,12 +7,13 @@ import {
   Users,
   Home,
   Mail,
+  Phone,
 } from 'lucide-react';
 import FilterBar from '@/components/FilterBar';
 import PropertyGrid from '@/components/PropertyGrid';
 import WhatsAppIcon from '@/components/WhatsAppIcon';
 import { fetchProperties, fetchPropertyTypes } from '@/lib/api/properties';
-import { PHONE_DISPLAY, CONTACT_EMAIL, waLink } from '@/constants/contact';
+import { PHONE_WA, CONTACT_EMAIL, waLink } from '@/constants/contact';
 
 export const metadata: Metadata = {
   title: 'Inmobiliaria Agustina García',
@@ -21,12 +22,12 @@ export const metadata: Metadata = {
 const STEPS = [
   {
     Icon: MessageSquareText,
-    title: 'Nos contás lo que buscás',
+    title: 'Me contás qué estás buscando',
     number: '1',
   },
   {
     Icon: Handshake,
-    title: 'Te asesoramos y mostramos seguros',
+    title: 'Juntos encontramos la opción ideal',
     number: '2',
   },
   {
@@ -36,7 +37,7 @@ const STEPS = [
   },
   {
     Icon: Home,
-    title: 'Cerrás con tranquilidad',
+    title: 'Cerrás tu operación con tranquilidad',
     number: '4',
   },
 ];
@@ -64,7 +65,7 @@ export default async function HomePage() {
             </p>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:justify-start">
-              <Link href="/properties" className="btn btn-primary gap-2.5 px-7 py-3.5 text-base">
+              <Link href="/propiedades" className="btn btn-primary gap-2.5 px-7 py-3.5 text-base">
                 <Home size={20} aria-hidden />
                 Ver propiedades
               </Link>
@@ -94,7 +95,7 @@ export default async function HomePage() {
               </h2>
             </div>
             <Link
-              href="/properties"
+              href="/propiedades"
               className="group inline-flex items-center gap-2 font-sans text-base font-medium text-verde transition-colors hover:text-verde-800"
             >
               Ver todas las propiedades
@@ -153,14 +154,21 @@ export default async function HomePage() {
                 href={waLink()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-3 rounded-full bg-verde px-5 py-3.5 font-sans text-sm font-medium transition-colors hover:bg-verde-800"
+                className="flex items-center gap-3 rounded-full bg-verde px-5 py-3.5 font-sans text-sm font-medium text-white transition-colors hover:bg-verde-800"
               >
                 <WhatsAppIcon size={19} />
-                {PHONE_DISPLAY}
+                Consultar por WhatsApp
+              </a>
+              <a
+                href={`tel:+${PHONE_WA}`}
+                className="flex items-center gap-3 rounded-full bg-white/10 px-5 py-3.5 font-sans text-sm font-medium text-white transition-colors hover:bg-white/20"
+              >
+                <Phone size={17} className="shrink-0 text-white/70" />
+                Llamar
               </a>
               <a
                 href={`mailto:${CONTACT_EMAIL}`}
-                className="flex items-center gap-3 font-sans text-sm text-white/85 transition-colors hover:text-white"
+                className="flex items-center gap-3 rounded-full bg-white/10 px-5 py-3.5 font-sans text-sm font-medium text-white transition-colors hover:bg-white/20"
               >
                 <Mail size={17} className="shrink-0 text-white/70" />
                 {CONTACT_EMAIL}

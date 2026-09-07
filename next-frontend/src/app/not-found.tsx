@@ -15,7 +15,7 @@ export default function NotFound() {
         Esa propiedad no existe o ya dejó de publicarse. Volvé al listado para
         seguir explorando los cerros de Tandil.
       </p>
-      <Link href="/properties" className="btn btn-primary mt-8 px-6 py-3">
+      <Link href="/propiedades" className="btn btn-primary mt-8 px-6 py-3">
         <ArrowLeft size={16} />
         Ver propiedades
       </Link>

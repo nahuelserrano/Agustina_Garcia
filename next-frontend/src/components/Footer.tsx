@@ -11,7 +11,7 @@ import { PHONE_DISPLAY, CONTACT_EMAIL, CONTACT_ADDRESS, waLink } from '@/constan
 
 const NAV_LINKS = [
   { label: 'Inicio', href: '/' },
-  { label: 'Propiedades', href: '/properties' },
+  { label: 'Propiedades', href: '/propiedades' },
   { label: 'Nosotros', href: '/#nosotros' },
   { label: 'Contacto', href: '/#contacto' },
 ];

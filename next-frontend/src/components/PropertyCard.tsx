@@ -36,7 +36,7 @@ export default function PropertyCard({ property }: { property: PublicPropertyDto
 
   return (
     <Link
-      href={`/properties/${property.id}`}
+      href={`/propiedades/${property.id}`}
       className="group flex flex-col overflow-hidden rounded-2xl border border-arena bg-white shadow-card transition-all duration-300 hover:-translate-y-1 hover:shadow-lift focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-verde focus-visible:ring-offset-2"
     >
       <div className="relative aspect-[16/10] overflow-hidden bg-crema-200/60">

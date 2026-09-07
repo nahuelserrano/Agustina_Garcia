@@ -1,6 +1,4 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
-import { Home } from 'lucide-react';
 import WhatsAppIcon from '@/components/WhatsAppIcon';
 import { waLink } from '@/constants/contact';
 

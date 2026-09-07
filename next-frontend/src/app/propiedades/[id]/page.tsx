@@ -80,7 +80,7 @@ export default async function PropertyDetailPage({ params }: DetailProps) {
     <div className="px-5 pb-24 pt-12 sm:px-8">
       <div className="mx-auto max-w-7xl">
         <Link
-          href="/properties"
+          href="/propiedades"
           className="mb-8 inline-flex items-center gap-2 text-sm font-medium text-noche/70 transition-colors hover:text-verde"
         >
           <ArrowLeft size={16} />

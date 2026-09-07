@@ -11,7 +11,7 @@ import { PHONE_DISPLAY, waLink } from '@/constants/contact';
 
 export const NAV = [
   { href: '/', label: 'Inicio', anchor: false },
-  { href: '/properties', label: 'Propiedades', anchor: false },
+  { href: '/propiedades', label: 'Propiedades', anchor: false },
   { href: '/#nosotros', label: 'Nosotros', anchor: true },
   { href: '/#contacto', label: 'Contacto', anchor: true },
 ];

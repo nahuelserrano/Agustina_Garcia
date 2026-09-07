@@ -15,7 +15,7 @@ interface PropertyGridProps {
 export default function PropertyGrid({
   properties,
   pagination,
-  basePath = '/properties',
+  basePath = '/propiedades',
   preserveParams,
   cols = 3,
   emptyMessage = 'No encontramos propiedades con esos criterios. Ajustá los filtros y probá de nuevo.',

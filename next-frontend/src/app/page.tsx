@@ -65,7 +65,7 @@ export default async function HomePage() {
             </p>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3 sm:justify-start">
-              <Link href="/properties" className="btn btn-primary gap-2.5 px-7 py-3.5 text-base">
+              <Link href="/propiedades" className="btn btn-primary gap-2.5 px-7 py-3.5 text-base">
                 <Home size={20} aria-hidden />
                 Ver propiedades
               </Link>
@@ -95,7 +95,7 @@ export default async function HomePage() {
               </h2>
             </div>
             <Link
-              href="/properties"
+              href="/propiedades"
               className="group inline-flex items-center gap-2 font-sans text-base font-medium text-verde transition-colors hover:text-verde-800"
             >
               Ver todas las propiedades

@@ -12,7 +12,7 @@ export default function SobreMiPage() {
       {/* ------------------------------------------------------------- Hero */}
       <section className="relative overflow-hidden">
         <div className="flex justify-center">
-          <div className="w-full max-w-6xl px-5 sm:px-8 py-10 sm:py-14 flex items-center gap-8">
+          <div className="w-full max-w-6xl px-5 sm:px-8 py-10 sm:py-14 flex flex-col lg:flex-row lg:items-center lg:gap-8 gap-12">
             <div className="relative w-full overflow-hidden rounded-3xl bg-crema-200 max-w-lg">
                <img
                 src="/agustina.jpeg"

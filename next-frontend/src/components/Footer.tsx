@@ -12,7 +12,7 @@ import { PHONE_DISPLAY, CONTACT_EMAIL, CONTACT_ADDRESS, waLink } from '@/constan
 const NAV_LINKS = [
   { label: 'Inicio', href: '/' },
   { label: 'Propiedades', href: '/propiedades' },
-  { label: 'Nosotros', href: '/#nosotros' },
+  { label: 'Sobre mí', href: '/sobre-mi' },
   { label: 'Contacto', href: '/#contacto' },
 ];
 
@@ -172,7 +172,7 @@ function ContactBody() {
       </li>
       <li>
         <a
-          href={`mailto:${CONTACT_EMAIL}`}
+          href={`mailto:${CONTACT_EMAIL}?subject=Consulta%20desde%20la%20web`}
           className="flex items-center gap-2 whitespace-nowrap text-noche/80 transition-colors hover:text-verde"
         >
           <Mail size={15} className="shrink-0 text-verde" />

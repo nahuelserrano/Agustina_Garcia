@@ -69,7 +69,7 @@ export default async function HomePage() {
                 <Home size={20} aria-hidden />
                 Ver propiedades
               </Link>
-              <Link href="/#nosotros" className="btn btn-outline px-7 py-3.5 text-base">
+              <Link href="/sobre-mi" className="btn btn-outline px-7 py-3.5 text-base">
                Quiero saber más
               </Link>
             </div>
@@ -112,7 +112,7 @@ export default async function HomePage() {
       {/* -------------------------------------- Cómo trabajamos + contacto rápido */}
       <section id="trabajamos" className="px-5 py-20 sm:px-8">
         <div className="container grid gap-8 lg:grid-cols-[1.6fr_1fr] lg:items-stretch">
-          <div id="nosotros" className="rounded-3xl border border-arena bg-white p-8 sm:p-10">
+            <div className="rounded-3xl border border-arena bg-white p-8 sm:p-10">
             <p className="eyebrow">Cómo trabajamos?</p>
             <h2 className="mt-2 max-w-md font-sans text-3xl font-semibold tracking-tight">
               Un proceso claro y acompañado
@@ -167,7 +167,7 @@ export default async function HomePage() {
                 Llamar
               </a>
               <a
-                href={`mailto:${CONTACT_EMAIL}`}
+                href={`mailto:${CONTACT_EMAIL}?subject=Consulta%20desde%20la%20web`}
                 className="flex items-center gap-3 rounded-full bg-white/10 px-5 py-3.5 font-sans text-sm font-medium text-white transition-colors hover:bg-white/20"
               >
                 <Mail size={17} className="shrink-0 text-white/70" />

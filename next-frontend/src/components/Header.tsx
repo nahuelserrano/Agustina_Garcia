@@ -12,7 +12,7 @@ import { PHONE_DISPLAY, waLink } from '@/constants/contact';
 export const NAV = [
   { href: '/', label: 'Inicio', anchor: false },
   { href: '/propiedades', label: 'Propiedades', anchor: false },
-  { href: '/#nosotros', label: 'Nosotros', anchor: true },
+  { href: '/sobre-mi', label: 'Sobre mí', anchor: false },
   { href: '/#contacto', label: 'Contacto', anchor: true },
 ];
 

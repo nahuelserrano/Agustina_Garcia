@@ -20,7 +20,7 @@ const SERVICIOS = ['Tasaciones', 'Asesoramiento legal', 'Administración', 'Come
 
 export default function Footer() {
   return (
-    <footer id="contacto" className="border-t border-arena bg-crema">
+    <footer className="border-t border-arena bg-crema">
       <div className="container-max py-14">
         <div className="hidden gap-10 xl:grid xl:grid-cols-4">
           <div>

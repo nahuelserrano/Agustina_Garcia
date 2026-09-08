@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   ArrowRight,
   MessageSquareText,
@@ -110,7 +111,7 @@ export default async function HomePage() {
       </section>
 
       {/* -------------------------------------- Cómo trabajamos + contacto rápido */}
-      <section id="trabajamos" className="px-5 py-20 sm:px-8">
+      <section className="px-5 pb-8 pt-20 sm:px-8 sm:pb-10">
         <div className="container grid gap-8 lg:grid-cols-[1.6fr_1fr] lg:items-stretch">
             <div className="rounded-3xl border border-arena bg-white p-8 sm:p-10">
             <p className="eyebrow">Cómo trabajamos?</p>
@@ -139,7 +140,7 @@ export default async function HomePage() {
           </div>
 
           {/* Contacto rápido */}
-          <div className="flex flex-col justify-between rounded-3xl bg-noche p-8 text-white sm:p-10">
+          <div id="contacto" className="scroll-mt-24 flex flex-col justify-between rounded-3xl bg-noche p-8 text-white sm:p-10">
             <div>
               <h2 className="font-sans text-3xl font-semibold tracking-tight">
                 ¿Tenés dudas?
@@ -173,6 +174,28 @@ export default async function HomePage() {
                 <Mail size={17} className="shrink-0 text-white/70" />
                 {CONTACT_EMAIL}
               </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* --------------------------------------------------------------- Ubicación */}
+      <section className="px-5 pb-20 sm:px-8">
+        <div className="container relative overflow-hidden rounded-3xl border border-arena bg-white shadow-card">
+          <div className="relative aspect-[4.5/1] min-h-[170px] w-full sm:min-h-[210px]">
+            <Image
+              src="/mapa.png"
+              alt="Mapa de ubicación de Agustina García Inmobiliaria en Tandil"
+              fill
+              sizes="(max-width: 640px) calc(100vw - 2.5rem), 1152px"
+              className="object-cover"
+            />
+
+            <div
+              aria-label="Espacio reservado para la imagen de la puerta de la oficina"
+              className="absolute left-4 top-4 flex h-[calc(100%-2rem)] w-[30%] min-w-40 items-center justify-center rounded-2xl border-2 border-dashed border-verde/60 bg-white/90 p-3 text-center font-sans text-xs font-medium text-noche/60 shadow-card backdrop-blur-sm sm:left-6 sm:top-6 sm:h-[calc(100%-3rem)] sm:w-[30%]"
+            >
+              Imagen de la oficina
             </div>
           </div>
         </div>

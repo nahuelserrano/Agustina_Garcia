@@ -12,7 +12,7 @@ export default function SobreMiPage() {
       {/* ------------------------------------------------------------- Hero */}
       <section className="relative overflow-hidden">
         <div className="flex justify-center">
-          <div className="w-full max-w-6xl px-5 sm:px-8 py-10 sm:py-14 flex flex-col lg:flex-row lg:items-center lg:gap-8 gap-12">
+          <div className="w-full max-w-7xl px-3 sm:px-6 py-10 sm:py-14 flex flex-col lg:flex-row lg:items-center lg:gap-8 gap-12">
             <div className="relative w-full overflow-hidden rounded-3xl bg-crema-200 max-w-lg">
                <img
                 src="/agustina.jpeg"
@@ -40,6 +40,17 @@ export default function SobreMiPage() {
                </div>
             </div>
           </div>
+        </div>
+      </section>
+      <section className="pb-10 sm:pb-14">
+        <div className="mx-auto w-full max-w-7xl px-3 sm:px-6">
+          <img
+            src="/banner-about.png"
+            alt="Agustina García Inmobiliaria"
+            width={2170}
+            height={725}
+            className="w-full rounded-3xl object-cover shadow-lg"
+          />
         </div>
       </section>
     </div>

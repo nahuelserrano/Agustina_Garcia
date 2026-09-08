@@ -9,15 +9,11 @@ import {
   CarFront,
   Ruler,
   Maximize,
-  Compass,
-  Calendar,
-  Banknote,
-  Info,
 } from 'lucide-react';
 import Gallery from '@/components/Gallery';
 import PropertyMap from '@/components/map/PropertyMap';
 import WhatsAppIcon from '@/components/WhatsAppIcon';
-import { fetchProperty } from '@/lib/api/properties';
+import { ApiError, fetchProperty } from '@/lib/api/properties';
 import { formatPrice, operationLabel, isRent, formatLocation, propertyTypeLabel } from '@/lib/format';
 import { PHONE_WA } from '@/constants/contact';
 
@@ -38,8 +34,9 @@ export default async function PropertyDetailPage({ params }: DetailProps) {
   let property;
   try {
     property = await fetchProperty(params.id);
-  } catch {
-    notFound();
+  } catch (error) {
+    if (error instanceof ApiError && error.status === 404) notFound();
+    throw error;
   }
 
   const rent = isRent(property.operation);
@@ -63,20 +60,6 @@ export default async function PropertyDetailPage({ params }: DetailProps) {
       suffix: 'm²',
     },
   ].filter((f) => f.value !== undefined && f.value !== null && f.value > 0);
-  [
-    property.condition && { label: 'Estado', value: property.condition, Icon: Info },
-    property.antiquityYears !== undefined && {
-      label: 'Antigüedad',
-      value: `${property.antiquityYears} años`,
-      Icon: Calendar,
-    },
-    property.orientation && { label: 'Orientación', value: property.orientation, Icon: Compass },
-    property.isMortgageEligible && {
-      label: 'Apto crédito hipotecario',
-      value: 'Sí',
-      Icon: Banknote,
-    },
-  ].filter(Boolean) as { label: string; value: string; Icon: typeof Info }[];
   return (
     <div className="px-5 pb-24 pt-12 sm:px-8">
       <div className="mx-auto max-w-7xl">

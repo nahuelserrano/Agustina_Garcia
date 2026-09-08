@@ -195,7 +195,7 @@ export default async function HomePage() {
               aria-label="Espacio reservado para la imagen de la puerta de la oficina"
               className="absolute left-4 top-4 flex h-[calc(100%-2rem)] w-[30%] min-w-40 items-center justify-center rounded-2xl border-2 border-dashed border-verde/60 bg-white/90 p-3 text-center font-sans text-xs font-medium text-noche/60 shadow-card backdrop-blur-sm sm:left-6 sm:top-6 sm:h-[calc(100%-3rem)] sm:w-[30%]"
             >
-              Imagen de la puerta de la oficina
+              Imagen de la oficina
             </div>
           </div>
         </div>

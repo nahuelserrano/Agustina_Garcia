@@ -15,6 +15,7 @@ import PropertyGrid from '@/components/PropertyGrid';
 import WhatsAppIcon from '@/components/WhatsAppIcon';
 import { fetchProperties, fetchPropertyTypes } from '@/lib/api/properties';
 import { PHONE_WA, CONTACT_EMAIL, waLink } from '@/constants/contact';
+import styles from './page.module.css';
 
 export const metadata: Metadata = {
   title: 'Inmobiliaria Agustina García',
@@ -50,7 +51,7 @@ export default async function HomePage() {
   return (
     <div className="bg-crema">
       {/* ------------------------------------------------------------------ Hero */}
-      <section className="hero-bg relative overflow-hidden">
+      <section className={`${styles.heroBg} relative overflow-hidden`}>
         <div className="container relative pb-40 pt-14 sm:pt-20">
           <div className="max-w-3xl pl-4 text-center sm:text-left">
             <h1 className="font-sans text-4xl font-semibold leading-[1.1] tracking-tight sm:text-5xl lg:text-[3.5rem]">

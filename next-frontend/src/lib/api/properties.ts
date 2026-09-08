@@ -8,6 +8,16 @@ import { buildPropertySearchParams } from '@/lib/validations/property';
 const API_URL = process.env.NEXT_PUBLIC_API_URL ?? 'http://localhost:3001';
 const REVALIDATE_SECONDS = 60;
 
+export class ApiError extends Error {
+  constructor(
+    message: string,
+    readonly status: number,
+  ) {
+    super(message);
+    this.name = 'ApiError';
+  }
+}
+
 /**
  * Listado paginado de propiedades. La regla `next: { revalidate: 60 }`
  * cachea la respuesta en el servidor durante 60 segundos (mejor rendimiento
@@ -23,7 +33,7 @@ export async function fetchProperties(query: PropertyQuery): Promise<PaginatedPr
   });
 
   if (!response.ok) {
-    throw new Error(`No se pudieron cargar las propiedades (${response.status})`);
+    throw new ApiError(`No se pudieron cargar las propiedades (${response.status})`, response.status);
   }
 
   return response.json() as Promise<PaginatedPropertiesResponse>;
@@ -40,7 +50,10 @@ export async function fetchPropertyTypes(): Promise<string[]> {
   });
 
   if (!response.ok) {
-    throw new Error(`No se pudieron cargar los tipos de propiedad (${response.status})`);
+    throw new ApiError(
+      `No se pudieron cargar los tipos de propiedad (${response.status})`,
+      response.status,
+    );
   }
 
   const data = (await response.json()) as { types?: string[] };
@@ -56,11 +69,10 @@ export async function fetchProperty(id: string): Promise<PublicPropertyDto> {
 
   if (!response.ok) {
     if (response.status === 404) {
-      throw new Error('Propiedad no encontrada');
+      throw new ApiError('Propiedad no encontrada', response.status);
     }
-    throw new Error(`No se pudo cargar la propiedad (${response.status})`);
+    throw new ApiError(`No se pudo cargar la propiedad (${response.status})`, response.status);
   }
 
   return response.json() as Promise<PublicPropertyDto>;
 }
-

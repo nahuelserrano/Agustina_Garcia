@@ -32,7 +32,7 @@ export default async function PropertiesPage({
         </header>
 
         <div className="mb-10">
-          <Suspense fallback={<div className="h-56 rounded-2xl bg-cream-200/50" />}>
+          <Suspense fallback={<div className="h-56 rounded-2xl bg-crema-200/50" />}>
             <FilterBar variant="full" propertyTypes={propertyTypes} />
           </Suspense>
         </div>

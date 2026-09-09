@@ -192,11 +192,14 @@ export default async function HomePage() {
               className="object-cover"
             />
 
-            <div
-              aria-label="Espacio reservado para la imagen de la puerta de la oficina"
-              className="absolute left-4 top-4 flex h-[calc(100%-2rem)] w-[30%] min-w-40 items-center justify-center rounded-2xl border-2 border-dashed border-verde/60 bg-white/90 p-3 text-center font-sans text-xs font-medium text-noche/60 shadow-card backdrop-blur-sm sm:left-6 sm:top-6 sm:h-[calc(100%-3rem)] sm:w-[30%]"
-            >
-              Imagen de la oficina
+            <div className="absolute left-4 top-4 h-[calc(100%-2rem)] w-[30%] min-w-40 overflow-hidden rounded-2xl shadow-card sm:left-6 sm:top-6 sm:h-[calc(100%-3rem)] sm:w-[30%]">
+              <Image
+                src="/oficina.jpeg"
+                alt="Oficina de Agustina García Inmobiliaria"
+                fill
+                sizes="(max-width: 640px) 30vw, 345px"
+                className="object-cover object-[center_20%]"
+              />
             </div>
           </div>
         </div>
